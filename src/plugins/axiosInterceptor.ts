@@ -1,11 +1,13 @@
 import axios, { InternalAxiosRequestConfig } from "axios";
 import loggerService from "@/services/loggerService.ts";
-import tenantService from "@/services/tenantService.ts";
+import { useAppStore } from "@/stores/app.ts";
 
 const _requestHandler = async (
   config: InternalAxiosRequestConfig
 ): Promise<InternalAxiosRequestConfig> => {
-  config.headers["tenant_code"] = tenantService.getTenant();
+  const appStore = useAppStore();
+  config.headers["tenant_code"] = appStore.tenant;
+  config.headers["language_code"] = appStore.language;
   //here you can handle auth headers ;)
   return config;
 };

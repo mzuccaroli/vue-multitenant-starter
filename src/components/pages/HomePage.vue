@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
 import { useAppStore } from "@/stores/app.ts";
+import { useDataStore } from "@/stores/data.ts";
 import tenantService from "@/services/tenantService.ts";
-import loggerService from "@/services/loggerService.ts";
 
 const logoUrl = tenantService.getImgAsset("logo.svg");
 const { t } = useI18n();
 const appStore = useAppStore();
+const dataStore = useDataStore();
 </script>
 
 <template>
@@ -22,6 +23,8 @@ const appStore = useAppStore();
       Production monde: {{ appStore.productionMode }}<br />
       Current 18n locale is: {{ appStore.language }}<br />
       Example translation: {{ t("current_i18n_locale") }}<br />
+
+      <a @click="dataStore.fetchUsers"> get data </a>
 
       <div>
         <a @click="appStore.changeLanguage('it')">
@@ -47,8 +50,12 @@ const appStore = useAppStore();
         </a>
       </div>
 
-      <a @click="loggerService.error('dummy error')">Log error</a><br />
-      <a @click="loggerService.info('dummy info')">Log info</a><br />
+      <div v-if="dataStore.isLoading">Loading...</div>
+      <div v-else>
+        <div v-for="user in dataStore.users" :key="user.id">
+          {{ user.name }} - {{ user.email }}
+        </div>
+      </div>
     </div>
   </div>
 </template>
