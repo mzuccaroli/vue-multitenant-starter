@@ -16,7 +16,7 @@ const dataStore = useDataStore();
       <img :src="logoUrl" class="logo vue" alt="Logo" />
     </a>
   </div>
-  <h1>{{ t("message") }}</h1>
+  <h1 class="custom-title">{{ t("message") }}</h1>
   <div class="card">
     <div>
       Tenant is: {{ appStore.tenant }}<br />

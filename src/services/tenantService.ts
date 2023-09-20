@@ -8,4 +8,7 @@ export default {
       import.meta.url
     ).href;
   },
+  async importCss() {
+    await import(`../styles/${this.getTenant()}/stile.scss`);
+  },
 };
