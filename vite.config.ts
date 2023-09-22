@@ -47,7 +47,7 @@ export default ({ mode }) => {
   const faviconsInject =
     env.VITE_RUNNING_CONTEXT !== "local"
       ? vitePluginFaviconsInject(
-          `./src/assets/img/${env.VITE_TENANT}/logo.svg`,
+          `./src/assets/tenants/${env.VITE_TENANT}/img/logo.svg`,
           {
             background: "#fff",
             theme_color: "#fff",
@@ -88,5 +88,11 @@ export default ({ mode }) => {
         exclude: ["node_modules/", "src/setupTests.ts"],
       },
     },
+    // build: {
+    //   rollupOptions: {
+    //     // remove all assets that not belong to current tenant from final build
+    //     external: new RegExp(`/assets/tenants/(?!${env.VITE_TENANT}/).*`),
+    //   },
+    // },
   });
 };
