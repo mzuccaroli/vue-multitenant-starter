@@ -21,17 +21,19 @@ app.mount("#app");
 
 axiosInterceptor();
 
-const locale = i18n.global.locale.value;
+// -------- tenant handling --------
 try {
+  const locale = i18n.global.locale.value;
   translationsService.getTranslation(locale).then((translations) => {
     i18n.global.setLocaleMessage(locale, translations);
   });
 } catch (e) {
-  loggerService.warn("Unable to retrieve translations, using default");
+  loggerService.warn("Unable to retrieve tenant translations, using default");
 }
 
 try {
-  tenantService.importCss();
+  tenantService.applyCss();
 } catch (e) {
-  loggerService.warn("Unable to load tenant css, using default");
+  loggerService.warn("Unable to load tenant css, skipping");
 }
+// -------- -------- --------

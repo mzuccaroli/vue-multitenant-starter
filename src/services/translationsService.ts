@@ -14,9 +14,8 @@ export default {
 };
 
 const getFromFs = async (lang: string): Promise<LocaleMessageObject> => {
-  const messages = await tenantService.getLocaleAsset(lang);
-  //this should be validated
-  return messages.default as LocaleMessageObject;
+  // this should be validated
+  return await tenantService.getLocaleAsset(lang);
 };
 
 // const getFromCMS = async (lang: string): Promise<LocaleMessageObject> => {

@@ -3,18 +3,23 @@ import { useI18n } from "vue-i18n";
 import { useAppStore } from "@/stores/app.ts";
 import { useDataStore } from "@/stores/data.ts";
 import tenantService from "@/services/tenantService.ts";
+import { onBeforeMount } from "vue";
+import { ref } from "vue";
 
-const logoUrl = tenantService.getImgAsset("logo.svg");
+// const logoUrl =await tenantService.getImgAsset("logo.svg");
+const logoUrl = ref("");
 const { t } = useI18n();
 const appStore = useAppStore();
 const dataStore = useDataStore();
+
+onBeforeMount(async () => {
+  logoUrl.value = await tenantService.getSvgAssetUrl("logo");
+});
 </script>
 
 <template>
   <div>
-    <a href="https://vuejs.org/" target="_blank">
-      <img :src="logoUrl" class="logo vue" alt="Logo" />
-    </a>
+    <img class="logo vue" alt="Logo" :src="logoUrl" />
   </div>
   <h1 class="custom-title">{{ t("message") }}</h1>
   <div class="card">

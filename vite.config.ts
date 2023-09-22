@@ -4,6 +4,7 @@ import { fileURLToPath, URL } from "url";
 import vitePluginFaviconsInject from "vite-plugin-favicons-inject";
 import type { ViteSentryPluginOptions } from "vite-plugin-sentry";
 import viteSentry from "vite-plugin-sentry";
+import svgLoader from "vite-svg-loader";
 
 // https://vitejs.dev/config/
 
@@ -41,33 +42,32 @@ export default ({ mode }) => {
         ["process.env." + key]: `"${val}"`,
       };
     },
-    {}
+    {},
   );
 
   const faviconsInject =
     env.VITE_RUNNING_CONTEXT !== "local"
       ? vitePluginFaviconsInject(
-          `./src/assets/tenants/${env.VITE_TENANT}/img/logo.svg`,
-          {
-            background: "#fff",
-            theme_color: "#fff",
-            appName: `${env.VITE_TENANT} | ${env.VITE_APP_NAME}`,
-            appDescription: `${env.VITE_TENANT} ${env.VITE_APP_DESCRIPTION}`,
-            version: env.VITE_APP_VERSION,
-          }
-        )
+        `./src/assets/tenants/${env.VITE_TENANT}/img/logo.svg`,
+        {
+          background: "#fff",
+          theme_color: "#fff",
+          appName: `${env.VITE_TENANT} | ${env.VITE_APP_NAME}`,
+          appDescription: `${env.VITE_TENANT} ${env.VITE_APP_DESCRIPTION}`,
+          version: env.VITE_APP_VERSION,
+        },
+      )
       : undefined;
 
   return defineConfig({
     // server: {
     //   port: 8080,
     // },
-    plugins: [vue(), viteSentry(sentryConfig), faviconsInject],
+    plugins: [vue(), viteSentry(sentryConfig), faviconsInject, svgLoader()],
     define: envWithProcessPrefix,
     resolve: {
       alias: {
         "@": fileURLToPath(new URL("./src", import.meta.url)),
-        // "vue-i18n": "vue-i18n/dist/vue-i18n.cjs.js",
       },
     },
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
