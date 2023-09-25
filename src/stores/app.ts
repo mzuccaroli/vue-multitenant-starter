@@ -21,13 +21,13 @@ export const useAppStore = defineStore({
   actions: {
     async changeLanguage(lang: string) {
       this.language = lang;
+      i18n.global.locale.value = lang;
       try {
         const translations = await translationsService.getTranslation(lang);
-        i18n.global.setLocaleMessage(lang, translations);
-        i18n.global.locale.value = lang;
+        i18n.global.mergeLocaleMessage(lang, translations);
       } catch (e) {
         loggerService.warn(
-          `Unable to retrieve "${lang}" translations, using default`
+          `Unable to retrieve "${lang}" tenant translations`
         );
       }
     },

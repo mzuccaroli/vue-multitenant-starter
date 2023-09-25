@@ -24,14 +24,15 @@ onBeforeMount(async () => {
   <h1 class="custom-title">{{ t("message") }}</h1>
   <div class="card">
     <div>
-      Tenant is: {{ appStore.tenant }}<br />
-      Production monde: {{ appStore.productionMode }}<br />
-      Current 18n locale is: {{ appStore.language }}<br />
-      Example translation: {{ t("current_i18n_locale") }}<br />
+      <p>
+        Tenant is: <b>{{ appStore.tenant }}</b><br />
+        Production monde: <b>{{ appStore.productionMode }}</b><br />
+        Current 18n locale is: <b>{{ appStore.language }}</b><br />
+        Inherited translation: <b>{{ t("current_i18n_locale") }}</b><br />
+        Ternant translation: <b>{{ t("merged_i18n_locale") }}</b><br />
+      </p>
 
-      <a @click="dataStore.fetchUsers"> get data </a>
-
-      <div>
+      <p>
         <a @click="appStore.changeLanguage('it')">
           <img
             src="@/assets/img/flags/it.png"
@@ -53,9 +54,14 @@ onBeforeMount(async () => {
             alt="spanish language"
           />
         </a>
-      </div>
+      </p>
 
-      <div v-if="dataStore.isLoading">Loading...</div>
+
+      <p>
+        <a @click="dataStore.fetchUsers"> get data </a>
+      </p>
+
+      <p v-if="dataStore.isLoading">Loading...</p>
       <div v-else>
         <div v-for="user in dataStore.users" :key="user.id">
           {{ user.name }} - {{ user.email }}

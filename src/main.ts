@@ -25,7 +25,7 @@ axiosInterceptor();
 try {
   const locale = i18n.global.locale.value;
   translationsService.getTranslation(locale).then((translations) => {
-    i18n.global.setLocaleMessage(locale, translations);
+    i18n.global.mergeLocaleMessage(locale, translations);
   });
 } catch (e) {
   loggerService.warn("Unable to retrieve tenant translations, using default");

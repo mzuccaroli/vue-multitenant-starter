@@ -18,9 +18,12 @@ export const useDataStore = defineStore({
   actions: {
     async fetchUsers() {
       try {
+        this.isLoading = true;
         this.users = await geUsers();
       } catch (e) {
         loggerService.error(`Error fetching users`);
+      } finally {
+        this.isLoading = false;
       }
     },
   },
