@@ -1,16 +1,16 @@
 import { LocaleMessageObject } from "vue-i18n";
-import tenantService from "@/services/tenantService.ts";
+import * as tenantService from "@/services/tenantService.ts";
 
-export default {
-  getLocaleFromBrowser(): string {
-    const loc = navigator.language || "en-EN";
-    return loc.split("-")[0];
-  },
+export const getLocaleFromBrowser = (): string => {
+  const loc = navigator.language || "en-EN";
+  return loc.split("-")[0];
+};
 
-  async getTranslation(lang: string): Promise<LocaleMessageObject> {
-    return getFromFs(lang);
-    // return getFromCMS(lang);
-  },
+export const getTranslation = async (
+  lang: string
+): Promise<LocaleMessageObject> => {
+  return getFromFs(lang);
+  // return getFromCMS(lang);
 };
 
 const getFromFs = async (lang: string): Promise<LocaleMessageObject> => {

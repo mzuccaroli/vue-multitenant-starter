@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
-import tenantService from "@/services/tenantService.ts";
-import translationsService from "@/services/translationsService.ts";
+import * as tenantService from "@/services/tenantService.ts";
+import * as translationsService from "@/services/translationsService.ts";
 import i18n from "@/plugins/i18n.ts";
 import loggerService from "@/services/loggerService.ts";
 
@@ -26,9 +26,7 @@ export const useAppStore = defineStore({
         const translations = await translationsService.getTranslation(lang);
         i18n.global.mergeLocaleMessage(lang, translations);
       } catch (e) {
-        loggerService.warn(
-          `Unable to retrieve "${lang}" tenant translations`
-        );
+        loggerService.warn(`Unable to retrieve "${lang}" tenant translations`);
       }
     },
   },

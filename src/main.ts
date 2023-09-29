@@ -5,10 +5,10 @@ import App from "@/App.vue";
 import router from "@/router";
 import i18n from "@/plugins/i18n";
 import { sentryInit } from "@/plugins/sentry.ts";
-import translationsService from "@/services/translationsService.ts";
+import * as translationsService from "@/services/translationsService.ts";
 import loggerService from "@/services/loggerService.ts";
 import axiosInterceptor from "@/plugins/axiosInterceptor";
-import tenantService from "@/services/tenantService.ts";
+import * as tenantService from "@/services/tenantService.ts";
 
 const app = createApp(App);
 const pinia = createPinia();

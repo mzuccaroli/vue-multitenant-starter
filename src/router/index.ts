@@ -2,12 +2,10 @@ import {
   createRouter,
   createWebHistory,
   RouteRecordRaw,
-  // RouterView,
 } from "vue-router";
-// import { h } from "vue";
 import HomePage from "@/components/pages/HomePage.vue";
 import { appName } from "@/services/configservice.ts";
-import tenantService from "@/services/tenantService.ts";
+import * as tenantService from "@/services/tenantService.ts";
 
 const routes: RouteRecordRaw[] = [
   {

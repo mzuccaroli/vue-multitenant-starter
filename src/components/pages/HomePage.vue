@@ -2,7 +2,7 @@
 import { useI18n } from "vue-i18n";
 import { useAppStore } from "@/stores/app.ts";
 import { useDataStore } from "@/stores/data.ts";
-import tenantService from "@/services/tenantService.ts";
+import * as tenantService from "@/services/tenantService.ts";
 import { onBeforeMount } from "vue";
 import { ref } from "vue";
 
@@ -25,11 +25,16 @@ onBeforeMount(async () => {
   <div class="card">
     <div>
       <p>
-        Tenant is: <b>{{ appStore.tenant }}</b><br />
-        Production monde: <b>{{ appStore.productionMode }}</b><br />
-        Current 18n locale is: <b>{{ appStore.language }}</b><br />
-        Inherited translation: <b>{{ t("current_i18n_locale") }}</b><br />
-        Ternant translation: <b>{{ t("merged_i18n_locale") }}</b><br />
+        Tenant is: <b>{{ appStore.tenant }}</b
+        ><br />
+        Production monde: <b>{{ appStore.productionMode }}</b
+        ><br />
+        Current 18n locale is: <b>{{ appStore.language }}</b
+        ><br />
+        Inherited translation: <b>{{ t("current_i18n_locale") }}</b
+        ><br />
+        Ternant translation: <b>{{ t("merged_i18n_locale") }}</b
+        ><br />
       </p>
 
       <p>
@@ -55,7 +60,6 @@ onBeforeMount(async () => {
           />
         </a>
       </p>
-
 
       <p>
         <a @click="dataStore.fetchUsers"> get data </a>

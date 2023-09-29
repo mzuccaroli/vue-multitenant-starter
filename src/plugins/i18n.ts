@@ -1,5 +1,5 @@
 import { createI18n } from "vue-i18n";
-import translationsService from "@/services/translationsService.ts";
+import * as translationsService from "@/services/translationsService.ts";
 
 import en from "@/assets/locales/en.json";
 import it from "@/assets/locales/it.json";

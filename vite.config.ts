@@ -42,21 +42,21 @@ export default ({ mode }) => {
         ["process.env." + key]: `"${val}"`,
       };
     },
-    {},
+    {}
   );
 
   const faviconsInject =
     env.VITE_RUNNING_CONTEXT !== "local"
       ? vitePluginFaviconsInject(
-        `./src/assets/tenants/${env.VITE_TENANT}/img/logo.svg`,
-        {
-          background: "#fff",
-          theme_color: "#fff",
-          appName: `${env.VITE_TENANT} | ${env.VITE_APP_NAME}`,
-          appDescription: `${env.VITE_TENANT} ${env.VITE_APP_DESCRIPTION}`,
-          version: env.VITE_APP_VERSION,
-        },
-      )
+          `./src/assets/tenants/${env.VITE_TENANT}/img/logo.svg`,
+          {
+            background: "#fff",
+            theme_color: "#fff",
+            appName: `${env.VITE_TENANT} | ${env.VITE_APP_NAME}`,
+            appDescription: `${env.VITE_TENANT} ${env.VITE_APP_DESCRIPTION}`,
+            version: env.VITE_APP_VERSION,
+          }
+        )
       : undefined;
 
   return defineConfig({
