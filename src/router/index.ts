@@ -1,8 +1,4 @@
-import {
-  createRouter,
-  createWebHistory,
-  RouteRecordRaw,
-} from "vue-router";
+import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 import HomePage from "@/components/pages/HomePage.vue";
 import { appName } from "@/services/configservice.ts";
 import * as tenantService from "@/services/tenantService.ts";

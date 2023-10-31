@@ -9,6 +9,7 @@ export const getSvgAssetUrl = async (asset: string) => {
     const svg = await import(
       `../assets/tenants/${process.env.VITE_TENANT}/img/${asset}.svg?url`
     );
+    // import.meta.env.VITE_TENANT_CODE
     return svg.default;
   } catch (e) {
     loggerService.warn("Unable to retrieve tenant svg asset");
@@ -30,9 +31,9 @@ export const getLocaleAsset = async (lang: string) => {
   }
 };
 
-export const getCssAsset = async () => {
+const getCssAsset = async () => {
   try {
-    //gob import see: https://vitejs.dev/guide/features.html#glob-import
+    //glob import see: https://vitejs.dev/guide/features.html#glob-import
     const styles = import.meta.glob("../assets/tenants/*/styles/stile.scss", {
       query: "?inline",
     });
@@ -50,6 +51,7 @@ export const applyCss = async () => {
   const css = await getCssAsset();
   if (css) {
     const styleElem = document.createElement("style");
+    styleElem.textContent = css;
     document.head.appendChild(styleElem);
   }
 };
