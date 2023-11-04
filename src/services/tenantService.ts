@@ -15,9 +15,11 @@ export const getSvgAssetUrl = async (asset: string) => {
     loggerService.warn("Unable to retrieve tenant svg asset");
   }
 };
-export const getLogoAsset = (asset: string): string => {
-  return new URL(`../assets/img/logos/${getTenant()}/${asset}`, import.meta.url)
-    .href;
+export const getImgAssetUrl = (asset: string): string => {
+  return new URL(
+    `../assets/tenants/${getTenant()}/img/${asset}`,
+    import.meta.url
+  ).href;
 };
 
 export const getLocaleAsset = async (lang: string) => {
@@ -31,7 +33,7 @@ export const getLocaleAsset = async (lang: string) => {
   }
 };
 
-const getCssAsset = async () => {
+const getStyleAsset = async () => {
   try {
     //glob import see: https://vitejs.dev/guide/features.html#glob-import
     const styles = import.meta.glob("../assets/tenants/*/styles/stile.scss", {
@@ -47,8 +49,20 @@ const getCssAsset = async () => {
   }
 };
 
+// const getStyleAsset = async () => {
+//   try {
+//     const res = await import(
+//       `../assets/tenants/${process.env.VITE_TENANT}/styles/stile.scss`
+//       );
+//     /* eslint-disable-next-line  @typescript-eslint/no-explicit-any */
+//     return (res as any).default;
+//   } catch (e) {
+//     loggerService.warn("Unable to load tenant css, skipping");
+//   }
+// };
+
 export const applyCss = async () => {
-  const css = await getCssAsset();
+  const css = await getStyleAsset();
   if (css) {
     const styleElem = document.createElement("style");
     styleElem.textContent = css;
