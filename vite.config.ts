@@ -88,11 +88,11 @@ export default ({ mode }) => {
         exclude: ["node_modules/", "src/setupTests.ts"],
       },
     },
-    // build: {
-    //   rollupOptions: {
-    //     // remove all assets that not belong to current tenant from final build
-    //     external: new RegExp(`/assets/tenants/(?!${env.VITE_TENANT}/).*`),
-    //   },
-    // },
+    build: {
+      rollupOptions: {
+        // remove all assets that not belong to current tenant from final build
+        external: new RegExp(`/assets/tenants/(?!${env.VITE_TENANT}/).*`),
+      },
+    },
   });
 };
