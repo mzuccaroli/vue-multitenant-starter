@@ -15,12 +15,12 @@ export const getSvgAssetUrl = async (asset: string) => {
     loggerService.warn("Unable to retrieve tenant svg asset");
   }
 };
-export const getImgAssetUrl = (asset: string): string => {
-  return new URL(
-    `../assets/tenants/${getTenant()}/img/${asset}`,
-    import.meta.url
-  ).href;
-};
+// export const getImgAssetUrl = (asset: string): string => {
+//   return new URL(
+//     `../assets/tenants/${getTenant()}/img/${asset}`,
+//     import.meta.url
+//   ).href;
+// };
 
 export const getLocaleAsset = async (lang: string) => {
   try {
